@@ -1,4 +1,12 @@
 class BottlesSong
+  def song
+    verses(99, 0)
+  end
+
+  def verses(upper, lower)
+    upper.downto(lower).map { |number| verse(number) }.join("\n")
+  end
+
   def verse(number)
     if number == 0
       "No more bottles of beer on the wall, " +
@@ -21,9 +29,5 @@ class BottlesSong
       "Take one down and pass it around, " +
       "#{number - 1} bottles of beer on the wall.\n"
     end
-  end
-
-  def entire_song
-    (99.downto(0).map { |number| verse(number) }).join("\n")
   end
 end

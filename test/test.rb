@@ -49,6 +49,35 @@ class BottlesSongTest < Minitest::Test
     assert_equal(expected, BottlesSong.new.verse(0))
   end
 
+  def test_verses_17_13
+    expected =
+      "17 bottles of beer on the wall, " +
+      "17 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "16 bottles of beer on the wall.\n" +
+      "\n" +
+      "16 bottles of beer on the wall, " +
+      "16 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "15 bottles of beer on the wall.\n" +
+      "\n" +
+      "15 bottles of beer on the wall, " +
+      "15 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "14 bottles of beer on the wall.\n" +
+      "\n" +
+      "14 bottles of beer on the wall, " +
+      "14 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "13 bottles of beer on the wall.\n" +
+      "\n" +
+      "13 bottles of beer on the wall, " +
+      "13 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "12 bottles of beer on the wall.\n"
+    assert_equal(expected, BottlesSong.new.verses(17, 13))
+  end
+
   def test_entire_song
     expected =
       <<~SONG
@@ -352,6 +381,6 @@ class BottlesSongTest < Minitest::Test
         No more bottles of beer on the wall, no more bottles of beer.
         Go to the store and buy some more, 99 bottles of beer on the wall.
       SONG
-    assert_equal(expected, BottlesSong.new.entire_song)
+    assert_equal(expected, BottlesSong.new.song)
   end
 end
