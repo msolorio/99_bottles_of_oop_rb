@@ -14,21 +14,46 @@ class Bottles
       "no more bottles of beer.\n" +
       "Go to the store and buy some more, " +
       "99 bottles of beer on the wall.\n"
-    when 1
-      "1 bottle of beer on the wall, " +
-      "1 bottle of beer.\n" +
-      "Take it down and pass it around, " +
-      "no more bottles of beer on the wall.\n"
-    when 2
-      "2 bottles of beer on the wall, " +
-      "2 bottles of beer.\n" +
-      "Take one down and pass it around, " +
-      "1 bottle of beer on the wall.\n"
     else
-      "#{number} bottles of beer on the wall, " +
-      "#{number} bottles of beer.\n" +
-      "Take one down and pass it around, " +
-      "#{number - 1} bottles of beer on the wall.\n"
+      "#{number} #{container(number)} of beer on the wall, " +
+      "#{number} #{container(number)} of beer.\n" +
+      "Take #{pronoun(number)} down and pass it around, " +
+      "#{quantity(number - 1)} #{container(number - 1)} of beer on the wall.\n"
+    end
+  end
+
+  def container(number)
+    if number == 1
+      "bottle"
+    else
+      "bottles"
+    end
+  end
+
+  def pronoun(number)
+    if number == 1
+      "it"
+    else
+      "one"
+    end
+  end
+
+  def quantity(number)
+    if number == 0
+      "no more"
+    else
+      number.to_s
     end
   end
 end
+
+=begin
+
+number  
+99 ---> '99'
+...
+3 ----> '3'
+2 ----> '2'
+1 ----> '1'
+0 ----> 'no more'
+=end
