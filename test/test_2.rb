@@ -389,3 +389,90 @@ class BottlesTest < Minitest::Test
     assert_equal(expected, Bottles.new.song)
   end
 end
+
+class BottleNumberTest < Minitest::Test
+  def test_bottle_number_container_1
+    expected = "bottle"
+    assert_equal(expected, BottleNumber.new(1).container)
+  end
+
+  def test_bottle_number_container_upper_bound
+    expected = "bottles"
+    assert_equal(expected, BottleNumber.new(99).container)
+  end
+
+  def test_bottle_number_container_lower_bound
+    expected = "bottles"
+    assert_equal(expected, BottleNumber.new(2).container)
+  end
+
+  def test_bottle_number_container_zero
+    expected = "bottles"
+    assert_equal(expected, BottleNumber.new(0).container)
+  end
+
+  def test_bottle_number_container_pronoun_1
+    expected = "it"
+    assert_equal(expected, BottleNumber.new(1).pronoun)
+  end
+
+  def test_bottle_number_pronoun_upper_bound
+    expected = "one"
+    assert_equal(expected, BottleNumber.new(99).pronoun)
+  end
+
+  def test_bottle_number_pronoun_lower_bound
+    expected = "one"
+    assert_equal(expected, BottleNumber.new(2).pronoun)
+  end
+
+  def test_bottle_number_quantity_0
+    expected = "no more"
+    assert_equal(expected, BottleNumber.new(0).quantity)
+  end
+
+  def test_bottle_number_quantity_upper_bound
+    expected = "99"
+    assert_equal(expected, BottleNumber.new(99).quantity)
+  end
+
+  def test_bottle_number_quantity_lower_bound
+    expected = "1"
+    assert_equal(expected, BottleNumber.new(1).quantity)
+  end
+
+  def test_bottle_number_action_0
+    expected = "Go to the store and buy some more, "
+    assert_equal(expected, BottleNumber.new(0).action)
+  end
+
+  def test_bottle_number_quantity_upper_bound
+    expected = "Take one down and pass it around, "
+    assert_equal(expected, BottleNumber.new(99).action)
+  end
+
+  def test_bottle_number_quantity_upper_bound
+    expected = "Take one down and pass it around, "
+    assert_equal(expected, BottleNumber.new(2).action)
+  end
+
+  def test_bottle_number_quantity_1
+    expected = "Take it down and pass it around, "
+    assert_equal(expected, BottleNumber.new(1).action)
+  end
+
+  def test_bottle_number_successor_0
+    expected = 99
+    assert_equal(expected, BottleNumber.new(0).successor)
+  end
+
+  def test_bottle_number_successor_upper_bound
+    expected = 98
+    assert_equal(expected, BottleNumber.new(99).successor)
+  end
+
+  def test_bottle_number_successor_lower_bound
+    expected = 0
+    assert_equal(expected, BottleNumber.new(1).successor)
+  end
+end
