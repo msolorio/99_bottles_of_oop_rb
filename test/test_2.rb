@@ -475,4 +475,24 @@ class BottleNumberTest < Minitest::Test
     expected = 0
     assert_equal(expected, BottleNumber.new(1).successor)
   end
+
+  def test_bottle_number_to_s_upper_bound
+    expected = "99 bottles"
+    assert_equal(expected, "#{BottleNumber.new(99)}")
+  end
+
+  def test_bottle_number_to_s_lower_bound
+    expected = "2 bottles"
+    assert_equal(expected, "#{BottleNumber.new(2)}")
+  end
+
+  def test_bottle_number_to_s_1
+    expected = "1 bottle"
+    assert_equal(expected, "#{BottleNumber.new(1)}")
+  end
+
+  def test_bottle_number_to_s_0
+    expected = "no more bottles"
+    assert_equal(expected, "#{BottleNumber.new(0)}")
+  end
 end
