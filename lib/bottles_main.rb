@@ -56,8 +56,8 @@ class BottleNumber
   # end
 
   # ----------------------------------------------------
-  # maintains a registry of classes to check. Classes register themselves.
-  # Is open for extension, creates instances of classes who's names it doesn't know
+  # using the inherited hook
+  # When a subclass is created from BottleNumber, the inherited hook is called
   def self.registry
     @registry ||= [self]
   end
@@ -66,9 +66,28 @@ class BottleNumber
     registry.prepend(candidate)
   end
 
+  def self.inherited(candidate)
+    register(candidate)
+  end
+
   def self.for(number)
     registry.find { |candidate| candidate.handles?(number) }.new(number)
   end
+
+  # ----------------------------------------------------
+  # maintains a registry of classes to check. Classes register themselves.
+  # Is open for extension, creates instances of classes who's names it doesn't know
+  # def self.registry
+  #   @registry ||= [self]
+  # end
+
+  # def self.register(candidate)
+  #   registry.prepend(candidate)
+  # end
+
+  # def self.for(number)
+  #   registry.find { |candidate| candidate.handles?(number) }.new(number)
+  # end
 
   # ----------------------------------------------------
   # maintains a registry of classes to check. Each class keeps track of if it should be chosen
