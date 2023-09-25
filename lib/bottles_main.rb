@@ -8,34 +8,24 @@ class Bottles
   end
 
   def verse(number)
+    BottleVerse.new(number).lyrics
+  end
+end
+
+class BottleVerse
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def lyrics
     bottle_number = BottleNumber.for(number)
 
     "#{bottle_number} of beer on the wall, ".capitalize +
     "#{bottle_number} of beer.\n" +
     bottle_number.action +
     "#{bottle_number.successor} of beer on the wall.\n"
-  end
-
-  private
-
-  def container(number)
-    BottleNumber.new(number).container
-  end
-
-  def pronoun(number)
-    BottleNumber.new(number).pronoun
-  end
-
-  def quantity(number)
-    BottleNumber.new(number).quantity
-  end
-
-  def action(number)
-    BottleNumber.new(number).action
-  end
-
-  def successor(number)
-    BottleNumber.new(number).successor
   end
 end
 
