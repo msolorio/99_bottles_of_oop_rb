@@ -3,16 +3,30 @@ require "minitest/autorun"
 require "minitest/pride"
 require_relative "../lib/bottles_main.rb"
 
+module VerseRoleTest
+  def test_plays_verse_template_role
+    assert_respond_to(@role_player, :lyrics)
+  end
+end
+
 class VerseFake
   def self.lyrics(number)
     "This is verse #{number}.\n"
   end
 end
 
+class VerseFakeTest < Minitest::Test
+  include VerseRoleTest
+
+  def setup
+    @role_player = VerseFake
+  end
+end
+
 class CountdownSongTest < Minitest::Test
   def test_a_verse
-    expected = "This is verse 543.\n"
-    assert_equal(expected, CountdownSong.new(verse_template: VerseFake).verse(543))
+    expected = "This is verse 541.\n"
+    assert_equal(expected, CountdownSong.new(verse_template: VerseFake).verse(541))
   end
 
   def test_a_few_verses
@@ -27,21 +41,27 @@ class CountdownSongTest < Minitest::Test
 
   def test_song
     expected =
+      "This is verse 43.\n" +
+      "\n" +
       "This is verse 42.\n" +
       "\n" +
       "This is verse 41.\n" +
       "\n" +
       "This is verse 40.\n" +
       "\n" +
-      "This is verse 39.\n" +
-      "\n" +
-      "This is verse 38.\n"
+      "This is verse 39.\n"
 
-    assert_equal(expected, CountdownSong.new(verse_template: VerseFake, max: 42, min: 38).song)
+    assert_equal(expected, CountdownSong.new(verse_template: VerseFake, max: 43, min: 39).song)
   end
 end
 
 class BottleVerseTest < Minitest::Test
+  include VerseRoleTest
+
+  def setup
+    @role_player = BottleVerse
+  end
+
   def test_verse_general_rule_upper_bound
     expected =
       "99 bottles of beer on the wall, " +
